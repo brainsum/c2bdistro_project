@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-SCRIPT=$(readlink -f "$0")
-SCRIPT_DIR=$(dirname "$SCRIPT")
-
-VARIABLES=$(realpath "${SCRIPT_DIR}/docker/acr.env")
-#shellcheck source=docker/acr.env
-source "${VARIABLES}"
-
-az acr login -n "${REGISTRY_NAME}" --subscription "${SUBSCRIPTION_NAME}"
-
 if [ ! -f .git/hooks/pre-commit ]; then
     cp example.git-pre-commit .git/hooks/pre-commit
 fi
