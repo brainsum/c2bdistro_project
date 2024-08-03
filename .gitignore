@@ -1,0 +1,18 @@
+tmp
+.idea
+
+.DS_Store
+
+vendor
+
+# Ignore .env files as they are personal
+.env
+.editorconfig
+.gitattributes
+
+docker-compose.local.yml
+
+/composer.lock
+
+# Ignore phpunit result cache
+app/.phpunit.result.cache

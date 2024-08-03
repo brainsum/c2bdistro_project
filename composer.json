@@ -1,0 +1,58 @@
+{
+    "name": "brainsum/c2bdistro-project",
+    "description": "Template for creating c2bdistro project via composer.",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "pmester",
+            "email": "pmester@brainsum.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "apcu-autoloader": true,
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "repositories": {
+        "drupal-8": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "drupal/core-project-message": "^10.1.0-alpha1"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "extra": {
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the brainsum/c2bdistro-project template!               </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message",
+                "  * Update .env and drush/drush.yml as needed",
+                "  * Fix directory permissions (e.g 770 with <web-server>:<current-user> for web/sites/default/files).",
+                "  * Install the site using the c2bdistro profile: https://www.drupal.org/docs/8/install",
+                "    * E.g for a local docker setup (for development): drush site-install --account-pass=123 c2bdistro -y",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved"
+            ]
+        }
+    }
+}

@@ -1,0 +1,13 @@
+parameters:
+  session.storage.options:
+    cookie_domain: '.c2bdistro.docker.localhost'
+    gc_probability: 1
+    gc_divisor: 100
+    gc_maxlifetime: 200000
+    cookie_lifetime: 2000000
+    cookie_samesite: Lax
+  # For local development.
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
