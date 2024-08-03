@@ -5,8 +5,8 @@
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "pmester",
-            "email": "pmester@brainsum.com"
+            "name": "ikosa",
+            "email": "ikosa@brainsum.com"
         }
     ],
     "minimum-stability": "dev",
