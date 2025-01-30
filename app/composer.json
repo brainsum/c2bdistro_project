@@ -10,8 +10,8 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.5",
         "drupal/classy": "^1.0",
-        "drupal/core-composer-scaffold": "^10.3",
-        "drupal/core-recommended": "^10.3",
+        "drupal/core-composer-scaffold": "^10.4",
+        "drupal/core-recommended": "^10.4",
         "drupal/exception_mailer": "^4.0",
         "drupal/openid_connect": "^3.0@alpha",
         "drush/drush": "^12.4.3",
@@ -23,7 +23,7 @@
     "require-dev": {
         "brainsum/drupal-dev-tools": "^5.0.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "drupal/core-dev": "^10.3",
+        "drupal/core-dev": "^10.4",
         "weitzman/drupal-test-traits": "^2.2",
         "weitzman/logintrait": "^1.2"
     },
