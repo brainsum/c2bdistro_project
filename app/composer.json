@@ -11,6 +11,7 @@
         "drupal/admin_toolbar": "^3.5",
         "drupal/classy": "^1.0",
         "drupal/core-composer-scaffold": "^10.4",
+        "drupal/core-project-message": "^10.4",
         "drupal/core-recommended": "^10.4",
         "drupal/exception_mailer": "^4.0",
         "drupal/openid_connect": "^3.0@alpha",
@@ -78,7 +79,9 @@
             "phpstan/extension-installer": true,
             "mglaman/composer-drupal-lenient": true,
             "ergebnis/composer-normalize": true,
-            "brainsum/drupal-dev-tools": true
+            "brainsum/drupal-dev-tools": true,
+            "tbachert/spi": true,
+            "drupal/core-project-message": true
         },
         "apcu-autoloader": true,
         "discard-changes": true,
