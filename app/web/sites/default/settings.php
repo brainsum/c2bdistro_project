@@ -69,3 +69,9 @@ if (file_exists(__DIR__ . '/../../../settings/settings.local.php')) {
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 $settings['state_cache'] = TRUE;
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
+}
