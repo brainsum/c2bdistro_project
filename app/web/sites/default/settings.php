@@ -62,10 +62,6 @@ $settings['file_private_path'] = '../private_files';
 $settings['config_sync_directory'] = '../config/sync';
 $settings['php_storage']['twig']['directory'] = '/tmp/drupal-storage/php';
 
-if (file_exists(__DIR__ . '/../../../settings/settings.local.php')) {
-  include_once __DIR__ . '/../../../settings/settings.local.php';
-}
-
 $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 $settings['state_cache'] = TRUE;
@@ -74,4 +70,8 @@ $settings['state_cache'] = TRUE;
 $ddev_settings = __DIR__ . '/settings.ddev.php';
 if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
   require $ddev_settings;
+}
+
+if (file_exists(__DIR__ . '/../../../settings/settings.local.php')) {
+    include_once __DIR__ . '/../../../settings/settings.local.php';
 }
