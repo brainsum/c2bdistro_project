@@ -23,8 +23,7 @@ private_files/
 
 ####
 
-settings/*.php
-!settings/settings.proxy.php
-!settings/settings.trusted-hosts.php
+#Ignore the local settings file.
+web/sites/default/settings.local.php
 # As this is just a bootstrap file here with sensitive values fetched from the env we can and should add it to git.
 !web/sites/default/settings.php

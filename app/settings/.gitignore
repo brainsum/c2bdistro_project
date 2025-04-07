@@ -1,6 +1,0 @@
-/settings.*.php
-/services.*.yml
-!/settings.kubernetes.php
-!/settings.proxy.php
-!/settings.trusted-hosts.php
-!/example

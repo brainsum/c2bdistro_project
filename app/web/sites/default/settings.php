@@ -72,6 +72,11 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
   require $ddev_settings;
 }
 
-if (file_exists(__DIR__ . '/../../../settings/settings.local.php')) {
-    include_once __DIR__ . '/../../../settings/settings.local.php';
+$ddev_settings = __DIR__ . '/ddev.settings.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
+}
+
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include_once __DIR__ . '/settings.local.php';
 }

@@ -70,3 +70,23 @@ The JSON:API module has been enabled, so you can serve your assets through that.
 ## Development
 
 For development info see the [DEVELOPMENT.md](./DEVELOPMENT.md) file.
+
+### Local settings
+
+Create the `app/web/sites/default/settings.local.php` file with the following content:
+
+``` php
+<?php
+
+/**
+ * @file
+ * Local settings.
+ */
+
+if (file_exists(__DIR__ . '/settings.development.php')) {
+  include_once __DIR__ . '/settings.development.php';
+}
+
+// Automated tests.
+$settings['trusted_host_patterns'][] = '^nginx';
+```
