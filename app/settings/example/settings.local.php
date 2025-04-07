@@ -7,8 +7,7 @@
 
 use Drupal\Component\Assertion\Handle;
 
-assert_options(ASSERT_ACTIVE, TRUE);
-Handle::register();
+ini_set('zend.assertions', 1);
 
 //$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
 $settings['container_yamls'][] = __DIR__ . '/services.monolog.yml';
