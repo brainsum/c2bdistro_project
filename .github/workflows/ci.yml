@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [ 'master']
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: [ 'master', 'prod' ]
+    paths-ignore:
+      - '**.md'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  composer-php-drupal-check:
+    name: Composer/PhpCS/Drupal-check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Validate composer.json and composer.lock
+      run: |
+        cd app
+        composer validate --strict --no-check-all
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+       php-version: '8.3'
+       extensions: gd, pdo_sqlite
+
+    - name: Clean up
+      run: |
+        cd app
+        rm -rf vendor/autoload.php vendor/autoload_runtime.php vendor/composer
+
+    - name: Install dependencies
+      run: |
+        cd app
+        composer install --prefer-dist --no-progress --optimize-autoloader || true # Return true, first install will fail because of missing patch file (race condition)
+        composer install --prefer-dist --no-progress --optimize-autoloader
+
+    - name: Run composer normalize
+      run: |
+        cd app
+        composer normalize --no-update-lock
+
+    - name: PhpCS
+      run: |
+        cd app
+        ./vendor/bin/phpcs
+
+    - name: Run drupal-check
+      if: always()
+      run: |
+        cd app
+        ./vendor/bin/drupal-check --deprecations --no-progress web/*/custom/
+
+#    - name: Run TwigCS
+#      if: always()
+#      run: ./vendor/bin/twig-cs-fixer check -n web/themes/custom/
+
+    - name: Run TwigCS
+      if: always()
+      run: |
+        cd app
+        ./vendor/bin/twigcs web/modules/custom/ --ruleset='Brainsum\Twigcs\Ruleset\DrupalTwigcs'
+
+    - name: Slack Notification
+      uses: 8398a7/action-slack@v3
+      with:
+        job_name: Composer/PhpCS/Drupal-check
+        author_name: 'Composer/PhpCS/Drupal-check'
+        channel: '#p-c2bdistro-github-notifications'
+        status: ${{ job.status }}
+        fields: ref,commit,eventName,workflow,took,pullRequest
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: always()
